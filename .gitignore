@@ -2,8 +2,7 @@
 */checkpoints/
 
 # Skip everything that contains data
-*/data/
-DDRM/data/
+DDRM/data/image_net_1k
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
