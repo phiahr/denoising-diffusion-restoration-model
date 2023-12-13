@@ -1,5 +1,8 @@
+# Skip the checkpoints
+*/checkpoints/
+
 # Skip everything that contains data
-*/data
+*/data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
