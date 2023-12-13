@@ -3,6 +3,7 @@
 
 # Skip everything that contains data
 */data/
+DDRM/data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
