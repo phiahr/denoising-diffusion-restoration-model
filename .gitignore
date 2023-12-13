@@ -3,6 +3,7 @@
 
 # Skip everything that contains data
 DDRM/data/image_net_1k
+DDRM/data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
