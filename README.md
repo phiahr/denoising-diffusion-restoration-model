@@ -1,6 +1,6 @@
 # [Re] Denoising Diffusion Restoration Models 
 
-**Authors**: Dalim Wahby, Philipp Ahrendt, Iga Pawlak
+**Authors**: Philipp Ahrendt, Dalim Wahby, Iga Pawlak
 
 Implemented as a final project for [Deep Learning, advanced](https://www.kth.se/student/kurser/kurs/DD2412?l=en) course given at KTH Stockholm, academic year 2023/2024.
 
