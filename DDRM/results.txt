@@ -1,0 +1,288 @@
+score of 16_restored.png is:
+-184675626.5796389
+score of 43_restored.png is:
+-101618657.09785728
+score of 11_restored.png is:
+-119927611.53520101
+score of 44_restored.png is:
+-70270794.79243739
+score of 26_degraded.png is:
+-114461781.52346115
+score of 21_degraded.png is:
+-224452177.39824438
+score of 4_degraded.png is:
+-171312242.54330838
+score of 3_degraded.png is:
+-122323096.67338581
+score of 34_degraded.png is:
+-118312564.97077565
+score of 33_degraded.png is:
+-131823396.94875285
+score of 35_restored.png is:
+-91738100.43542223
+score of 32_restored.png is:
+-91806293.69737108
+score of 5_restored.png is:
+-154653633.34044296
+score of 2_restored.png is:
+-168579759.99998957
+score of 39_original.png is:
+-95430908.75416869
+score of 27_restored.png is:
+-103487124.65627131
+score of 20_restored.png is:
+-105714817.44082715
+score of 17_degraded.png is:
+-204481699.09574968
+score of 42_degraded.png is:
+-155375423.41387296
+score of 9_original.png is:
+-113723900.07495989
+score of 10_degraded.png is:
+-121127782.53927256
+score of 45_degraded.png is:
+-172041443.6239578
+score of 2_degraded.png is:
+-161528137.53652793
+score of 5_degraded.png is:
+-157684829.45088422
+score of 32_degraded.png is:
+-107610512.63335131
+score of 35_degraded.png is:
+-143559870.305313
+score of 45_restored.png is:
+-119280615.86940962
+score of 10_restored.png is:
+-116171011.02603568
+score of 42_restored.png is:
+-90149606.03458543
+score of 17_restored.png is:
+-147976409.53635848
+score of 20_degraded.png is:
+-133559029.46679753
+score of 27_degraded.png is:
+-177573819.44918454
+score of 21_restored.png is:
+-198296559.93014258
+score of 26_restored.png is:
+-164821420.03491497
+score of 38_original.png is:
+-81852685.06440048
+score of 44_degraded.png is:
+-112731476.97882628
+score of 11_degraded.png is:
+-177497701.4466332
+score of 43_degraded.png is:
+-142153935.94430053
+score of 8_original.png is:
+-75788362.17094041
+score of 16_degraded.png is:
+-189322951.85381746
+score of 33_restored.png is:
+-93943324.09853296
+score of 34_restored.png is:
+-87816405.96574026
+score of 3_restored.png is:
+-134520539.3516921
+score of 4_restored.png is:
+-155951833.60079664
+score of 20_original.png is:
+-107901402.378789
+score of 39_restored.png is:
+-92529559.62162568
+score of 27_original.png is:
+-94052945.08028473
+score of 9_restored.png is:
+-135459414.19006905
+score of 32_original.png is:
+-102240163.15766095
+score of 35_original.png is:
+-80282029.04662769
+score of 2_original.png is:
+-119263746.95572795
+score of 5_original.png is:
+-108760862.03480105
+score of 44_original.png is:
+-78062738.79822464
+score of 11_original.png is:
+-95283800.95199856
+score of 43_original.png is:
+-85611941.91656147
+score of 8_degraded.png is:
+-155684105.80022454
+score of 16_original.png is:
+-153288904.69791502
+score of 38_degraded.png is:
+-126817019.378372
+score of 34_original.png is:
+-78912228.91802998
+score of 33_original.png is:
+-97610424.20328732
+score of 4_original.png is:
+-131118168.83238204
+score of 3_original.png is:
+-130216917.0390193
+score of 26_original.png is:
+-196424076.91020525
+score of 38_restored.png is:
+-92573947.8737256
+score of 21_original.png is:
+-216645408.50181627
+score of 8_restored.png is:
+-89991453.76008572
+score of 17_original.png is:
+-167925630.88029674
+score of 42_original.png is:
+-69289630.74974763
+score of 9_degraded.png is:
+-143193266.25239962
+score of 10_original.png is:
+-168614320.40028763
+score of 45_original.png is:
+-127714863.89406772
+score of 39_degraded.png is:
+-168896150.8063733
+score of 1_original.png is:
+-80876399.00900929
+score of 6_original.png is:
+-83944129.89707975
+score of 18_degraded.png is:
+-138128413.5630506
+score of 31_original.png is:
+-77928685.87830704
+score of 36_original.png is:
+-80855441.59125905
+score of 28_restored.png is:
+-120575790.30222829
+score of 23_original.png is:
+-103566101.40073459
+score of 24_original.png is:
+-129711558.23141243
+score of 47_original.png is:
+-97071348.58417447
+score of 12_original.png is:
+-112826743.86053239
+score of 40_original.png is:
+-83396446.18037935
+score of 15_original.png is:
+-154566300.03144532
+score of 29_degraded.png is:
+-121341815.98190497
+score of 19_restored.png is:
+-90990312.48489624
+score of 25_original.png is:
+-130563934.89478008
+score of 22_original.png is:
+-93877463.42593662
+score of 19_degraded.png is:
+-195663590.03948072
+score of 7_original.png is:
+-76209279.01996946
+score of 0_original.png is:
+-259941534.30528775
+score of 29_restored.png is:
+-78531188.10426416
+score of 37_original.png is:
+-103477825.6141175
+score of 30_original.png is:
+-137849167.84606698
+score of 28_degraded.png is:
+-137768849.49510956
+score of 18_restored.png is:
+-100295441.82779053
+score of 14_original.png is:
+-155929610.5584209
+score of 41_original.png is:
+-107555740.95777024
+score of 13_original.png is:
+-77125415.72402072
+score of 46_original.png is:
+-106165000.61822061
+score of 37_degraded.png is:
+-196327037.0399344
+score of 30_degraded.png is:
+-244997109.60125184
+score of 19_original.png is:
+-86029515.52897601
+score of 7_degraded.png is:
+-106099850.5584337
+score of 0_degraded.png is:
+-132507741.88554285
+score of 25_degraded.png is:
+-168313774.46206897
+score of 22_degraded.png is:
+-115320126.0521302
+score of 15_restored.png is:
+-192496157.4400098
+score of 40_restored.png is:
+-83228646.33822939
+score of 12_restored.png is:
+-118445852.9903465
+score of 47_restored.png is:
+-111907206.0653591
+score of 14_degraded.png is:
+-177461485.98637027
+score of 41_degraded.png is:
+-141542295.2033345
+score of 13_degraded.png is:
+-68899038.495325
+score of 46_degraded.png is:
+-175865187.66933388
+score of 24_restored.png is:
+-177248899.9473822
+score of 23_restored.png is:
+-156204840.07214656
+score of 6_restored.png is:
+-95831977.29366311
+score of 1_restored.png is:
+-93879524.73989606
+score of 36_restored.png is:
+-91976068.3965176
+score of 28_original.png is:
+-102629784.78323759
+score of 31_restored.png is:
+-115994720.81738709
+score of 23_degraded.png is:
+-107538023.37495208
+score of 24_degraded.png is:
+-170844197.52660924
+score of 46_restored.png is:
+-179043331.16569868
+score of 13_restored.png is:
+-65712132.689276695
+score of 41_restored.png is:
+-115327396.71365206
+score of 14_restored.png is:
+-180222258.98400456
+score of 31_degraded.png is:
+-141269149.00492135
+score of 36_degraded.png is:
+-116087925.04394855
+score of 1_degraded.png is:
+-140300173.94041562
+score of 6_degraded.png is:
+-86720817.83371197
+score of 18_original.png is:
+-105118662.39443405
+score of 0_restored.png is:
+-174485854.361634
+score of 7_restored.png is:
+-87566641.30206442
+score of 30_restored.png is:
+-190145851.855614
+score of 29_original.png is:
+-69957490.91338773
+score of 37_restored.png is:
+-148598358.76137343
+score of 47_degraded.png is:
+-135604282.3947631
+score of 12_degraded.png is:
+-160198114.49969506
+score of 40_degraded.png is:
+-192435408.0392354
+score of 15_degraded.png is:
+-160495752.6677763
+score of 22_restored.png is:
+-97666641.2906941
+score of 25_restored.png is:
+-150206769.6428234
