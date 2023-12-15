@@ -1,3 +1,9 @@
+"""
+Implementation of the degradation models for the denoising process in DDRM. 
+Authors: Iga Pawlak, Dalim Wahby, Philipp Ahrendt
+December, 2023
+"""
+
 import torch
 import numpy as np
 import torchvision.transforms as transforms

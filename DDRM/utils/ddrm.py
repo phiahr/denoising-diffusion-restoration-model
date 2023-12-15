@@ -1,3 +1,9 @@
+"""
+Implementation of the denoising process in DDRM, based on the code of DDPM (acknowledgements in README.md).
+Authors: Iga Pawlak, Dalim Wahby, Philipp Ahrendt
+December, 2023
+"""
+
 import torch
 import numpy as np
 import pytorch_diffusion.diffusion as diff
@@ -7,7 +13,6 @@ from pytorch_diffusion.diffusion import get_beta_schedule
 import PIL
 import torchvision.transforms as transforms
 import sys, tqdm, PIL.Image
-
 class DDRM(Diffusion):
     def __init__(self, diffusion_config, model_config, device=None):
         super().__init__(diffusion_config, model_config)
@@ -25,7 +30,19 @@ class DDRM(Diffusion):
                 n_steps=None, x=None, curr_step=None,
                 progress_bar=lambda i, total=None: i,
                 callback=lambda x, i, x0=None: None):
-        
+        """
+        A modification of denoise function from DDPM. 
+        args:
+            n: number of samples
+            y: image to denoise
+            degradation_model: degradation model, either Noising, UniformBlur or SuperResolution object
+            hyperparams: dictionary of hyperparameters with sigma_y, eta and eta_b
+            n_steps: number of steps for the backward diffusion
+            x: initial image
+            curr_step: current step
+            progress_bar: progress bar
+            callback: callback function
+        """
         with torch.no_grad():
             if curr_step is None:
                 curr_step = self.num_timesteps
@@ -54,9 +71,7 @@ class DDRM(Diffusion):
                 # logvar_T = torch.Tensor([self.logvar[-1]]).reshape(1,1,1,1).to(self.device)
 
                 # Get singulars from degradation model
-                # singulars = degradation_model.singulars.to(self.device).expand(3, degradation_model.singulars.shape[-1]).expand(y.shape[0],3,degradation_model.singulars.shape[-1]).view(y.shape)
                 singulars = degradation_model.get_singulars(n).to(self.device)
-                # singulars = singulars.view(y.shape)
                 # Get sigma_y / singulars
                 sigma_y_to_singulars_ratio = (sigma_y/singulars)
 
@@ -68,27 +83,26 @@ class DDRM(Diffusion):
                 # Set to 0 where singulars are zero
                 mean[torch.where(singulars == 0)] = 0
                 mean[torch.where(sigma_T_squared < sigma_y_to_singulars_ratio**2)] = 0
-                # mean = mean  * torch.sqrt(1 + torch.exp(logvar_T))
                 # Initialise the vector for variance
                 variance = sigma_T_squared - sigma_y_to_singulars_ratio**2
                 variance[torch.where(sigma_T_squared < sigma_y_to_singulars_ratio**2)] = sigma_T_squared[torch.where(sigma_T_squared < sigma_y_to_singulars_ratio)]
                 # Set to sigma_T_squared where the singular values are zero
                 variance[torch.where(singulars == 0)] = torch.exp(logvar_T).item()
-                # variance = variance.view(mean.shape)
-                # print(f"Mean shape {mean.shape} and variance shape {variance.shape}")
-                # Sample from the distribution to get x_bar
-                # x_bar = torch.normal(mean, std = torch.sqrt(variance))
-                # x_bar = x_bar
+                
+                # Sample x_bar from the distribution
                 x_bar = torch.normal(mean, std = torch.sqrt(variance))
 
                 # Get x from x_bar
                 x = degradation_model.get_x_from_x_bar(x_bar).reshape(mean.shape).to(self.device) 
+                # Scale to match the variance preserving notation
                 x_m = x / torch.sqrt(1 + torch.exp(logvar_T))
-                x_bar_m =  x_bar / torch.sqrt(1 + torch.exp(logvar_T))
                 
                 xs.append(x)
                 x = x.to(self.device)
+
+                # Step defined to perform n_steps skipping every num_timesteps/n_steps
                 step = int(self.num_timesteps/n_steps)
+
             for i in progress_bar(reversed(range(0, self.num_timesteps, step)), total=n_steps):
                 # Get x_bar by performing denoising step
                 x_bar, x0 = self.denoising_step(x = x_m,
@@ -109,11 +123,9 @@ class DDRM(Diffusion):
                                        return_pred_xstart=True, 
                                        step = step)
                 # Get x from x_bar
-                x_bar_m = x_bar * torch.sqrt(torch.Tensor(diff.extract(self.alphas_bar, t - step, x.shape)))
-                
-                # x_m = degradation_model.get_x_from_x_bar(x_bar_m).reshape(x.shape).to(self.device) 
-                # x = x_m * torch.sqrt(torch.Tensor(diff.extract(self.alphas_bar, t - 1, x.shape)))
                 x =  degradation_model.get_x_from_x_bar(x_bar).reshape(x.shape).to(self.device) 
+
+                # Scale to match the variance preserving notation
                 x_m = x  * torch.sqrt(torch.Tensor(diff.extract(self.alphas_bar, t - step, x.shape)))
 
                 # Set next t vector
@@ -138,7 +150,25 @@ class DDRM(Diffusion):
                    return_pred_xstart=True, 
                    step = 1):
         """
-        Sample from p(x_{t-1} | x_t, y)
+        Implementation of the denoising step in DDRM. 
+        args:
+            x: x_t from the previous step, scaled to match the variance preserving notation
+            x_bar: Vt * xt, obtained in the last iteration
+            y_bar: measurement 
+            t: previous time step vector
+            model: model to predic the level of noise to subtract
+            logvar: logvariance
+            sigma_y: sigma_y, level of added noise in degradation
+            singulars: singular values of the degradation matrix
+            degradation_model: degradation model, either Noising, UniformBlur or SuperResolution object
+            eta: eta
+            eta_b: eta_b
+            sqrt_recip_alphas_cumprod: sqrt_recip_alphas_cumprod
+            sqrt_recipm1_alphas_cumprod: sqrt_recipm1_alphas_cumprod
+            posterior_mean_coef1: posterior_mean_coef1
+            posterior_mean_coef2: posterior_mean_coef2
+            return_pred_xstart: return pred_xstart
+            step: step
         """
         # Singulars reshape
         singulars = singulars.view(x.shape)
@@ -146,22 +176,19 @@ class DDRM(Diffusion):
         # Get the output od the model
         model_output = model(x, t)
 
-        # print(f"X shape {x.shape}")
         # Get the predicted x_start (x_0)
-        # pred_xstart = (diff.extract(sqrt_recip_alphas_cumprod, t, x.shape)*x -
-        #             diff.extract(sqrt_recipm1_alphas_cumprod, t, x.shape)*model_output)
         alpha_bar_t_prev = torch.Tensor(diff.extract(self.alphas_bar, t, x.shape))
         pred_xstart = (x - torch.sqrt(1-alpha_bar_t_prev) * (model_output) )/ torch.sqrt(alpha_bar_t_prev) #/torch.sqrt(alpha_bar_t)
         pred_xstart = torch.clamp(pred_xstart, -1, 1)
+
         # Get x from x modified 
         x = x / torch.sqrt(alpha_bar_t_prev)
-        # pred_x_t_mean = (diff.extract(posterior_mean_coef1, t, x.shape)*pred_xstart +
-        #         diff.extract(posterior_mean_coef2, t, x.shape)*x).to(device=t.device)
 
         # logvariance_t_prev and sigma_t_prev
         logvar_t_prev = diff.extract(self.logvar_ddrm, t, x.shape)
         # sigma_t_prev = torch.full_like(singulars, torch.exp(0.5*logvar_t_prev)[0,0,0,0].item()).to(device=t.device)
         sigma_t_prev = torch.exp(0.5*logvar_t_prev).expand(singulars.shape)
+
         # Get x_start_bar
         pred_xstart_bar = degradation_model.get_x_bar(pred_xstart).view(singulars.shape)
 
@@ -198,10 +225,9 @@ class DDRM(Diffusion):
           return sigma_t**2 - sigma_y_to_singulars_ratio**2 * eta_b**2
 
         # First case sigma_t < sigma_y/singulars
-        # print(f"Sigma lower {torch.sum(sigma_t < sigma_y_to_singulars_ratio)}")
         mean = mean_sigma_t_lower(eta_squared, sigma_t, y_bar, pred_xstart_bar, sigma_y_to_singulars_ratio)
         variance = variance_singulars_zero(eta_squared, sigma_t)
-        # Second case higher
+        # Second case sigma_t >= sigma_y/singulars
         mean[torch.where(sigma_t >= sigma_y_to_singulars_ratio)] = mean_sigma_t_higher(eta_b, sigma_t,  pred_xstart_bar, y_bar)[torch.where(sigma_t >= sigma_y_to_singulars_ratio)]
         variance[torch.where(sigma_t >= sigma_y_to_singulars_ratio)] = variance_sigma_t_higher(eta_b, sigma_t,  sigma_y_to_singulars_ratio)[torch.where(sigma_t >= sigma_y_to_singulars_ratio)]
         # Third case singulars are zeros
@@ -210,9 +236,7 @@ class DDRM(Diffusion):
 
         # Sample x_bar from the distribution
         sample = torch.normal(mean, torch.sqrt(variance))
-        sample = sample
 
-        # print(f"Sample shape {sample.shape}")
         if return_pred_xstart:
             return sample, pred_xstart
         return sample
