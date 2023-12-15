@@ -39,9 +39,14 @@ In this work we aim to re-implement the Denoising Diffusion Restoration Models (
 └── README.md
 ``````
 
+## Data
+The data used for our expiments can be found here:
+- Minimum set of images need to run on the DDRM paper: [OOD Data](https://github.com/jiamings/ddrm-exp-datasets)
+- Huggingface's [ImageNet 1k](https://huggingface.co/datasets/imagenet-1k)
+
 
 ## Acknowledgements
-We use the pre-trained models from [https://github.com/pesser/pytorch_diffusion](https://github.com/pesser/pytorch_diffusion) and create a class inheriting from their ´Diffusion´ class and modify the ´denoise´ function as well as ´denoising_step´ 
+We use the pre-trained models from [Pytorch Diffusion](https://github.com/pesser/pytorch_diffusion) and create a class inheriting from their ´Diffusion´ class and modify the ´denoise´ function as well as ´denoising_step´ 
 with implementations of modifications described in DDRM. 
 
 
