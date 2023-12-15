@@ -46,8 +46,6 @@ The data used for our expiments can be found here:
 
 
 ## Acknowledgements
-We use the pre-trained models from [Pytorch Diffusion](https://github.com/pesser/pytorch_diffusion) and create a class inheriting from their `Diffusion` class and modify the `denoise` function as well as `denoising_step`
-with implementations of modifications described in DDRM. 
+Original paper: Kawar et al. (2022) [Denoising Diffusion Restoration Models](https://arxiv.org/abs/2201.11793)
 
-
-
+We use the pre-trained models from [Pytorch Diffusion](https://github.com/pesser/pytorch_diffusion) and create a class inheriting from their ´Diffusion´ class and modify the ´denoise´ function as well as ´denoising_step´ with implementations of modifications described in DDRM.
